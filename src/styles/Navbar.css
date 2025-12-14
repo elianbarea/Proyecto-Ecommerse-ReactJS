@@ -1,26 +1,41 @@
-.navbar {
+:root{
+  /* Paleta pastel */
+  --pastel-1: #f6f0ff; /* lavanda claro */
+  --pastel-2: #fff7f0; /* melocotón claro */
+  --pastel-3: #e8fff4; /* menta claro */
+  --accent-1: #9fc8ff; /* azul pastel */
+  --accent-2: #ffd6a5; /* naranja pastel */
+  --glass-bg: rgba(255,255,255,0.78);
+  --border-color: rgba(0,0,0,0.06);
+  --text-dark: #111827;
+  --navbar-height: 100px;
+}
+
+/* Navbar principal (usa clase Bootstrap .navbar + clase personalizada) */
+.navbar.custom-navbar{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 150px;
-  /* degradado con transparencia y efecto glass */
+  height: var(--navbar-height);
+  z-index: 1030; /* coherente con Bootstrap */
+  box-sizing: border-box;
+
+  /* fondo glass con degradado pastel */
   background: linear-gradient(90deg,
-    rgba(255,255,255,0.85) 0%,
-    rgba(255,255,255,0.55) 40%,
-    rgba(255,255,255,0.2) 70%,
+    var(--pastel-1) 0%,
+    rgba(255,255,255,0.85) 30%,
+    var(--pastel-2) 70%,
     rgba(255,255,255,0.0) 100%
   );
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  z-index: 1000;
-  box-sizing: border-box;
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* contenedor centrado dentro del navbar */
-.navbar .inner {
+/* contenedor interno: se integra con .container si prefieres */
+.navbar.custom-navbar .inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -31,64 +46,58 @@
   gap: 1rem;
 }
 
-/* logo / marca */
-.navbar .logo {
+/* Logo / marca (compatible con .navbar-brand de Bootstrap) */
+.navbar.custom-navbar .navbar-brand,
+.navbar.custom-navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-dark);
   font-weight: 700;
   font-size: 1.05rem;
-  color: #111;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  text-decoration: none;
 }
 
-/* área de acciones (links, botones) */
-.navbar .nav-actions {
+/* Área de acciones (links, botones) */
+.navbar.custom-navbar .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
-/* botones dentro del navbar (no afectan botones fuera) */
-.navbar .btn {
+/* Botones dentro del navbar (solo dentro del navbar) */
+.navbar.custom-navbar .btn {
   padding: 0.42rem 0.9rem;
   border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid var(--border-color);
   background: rgba(0,0,0,0.04);
-  color: #111;
+  color: var(--text-dark);
   font-size: 0.95rem;
   cursor: pointer;
   transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
   box-shadow: none;
 }
 
-/* variante primaria para acciones destacadas */
-.navbar .btn.primary {
-  background: linear-gradient(90deg, #1976ff, #0b63e6);
+/* Variante primaria pastel (usa tonos suaves) */
+.navbar.custom-navbar .btn.primary,
+.navbar.custom-navbar .btn.btn-primary {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
   color: #fff;
   border: none;
-  box-shadow: 0 6px 18px rgba(11,99,230,0.15);
+  box-shadow: 0 6px 18px rgba(159,200,255,0.12);
 }
 
-/* detalles y botones neutros (gris suave) */
-.navbar .btn.secondary,
-.navbar .btn.detalles {
+/* Variante secundaria / neutra */
+.navbar.custom-navbar .btn.secondary,
+.navbar.custom-navbar .btn.detalles,
+.navbar.custom-navbar .btn.btn-secondary {
   background: rgba(255,255,255,0.6);
   color: #333;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid var(--border-color);
 }
 
-/* hover / activo */
-.navbar .btn:hover {
-  transform: translateY(-2px);
-  background: rgba(0,0,0,0.08);
-}
-.navbar .btn.primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.03);
-}
-
-/* versión compacta (iconos) */
-.navbar .btn.icon {
+/* Icon buttons */
+.navbar.custom-navbar .btn.icon {
   padding: 0.35rem;
   width: 36px;
   height: 36px;
@@ -98,9 +107,82 @@
   border-radius: 8px;
 }
 
-/* responsive: reducir padding en pantallas pequeñas */
-@media (max-width: 600px) {
-  .navbar .inner { padding: 0 0.6rem; }
-  .navbar { height: 56px; }
-  :root { --navbar-height: 56px; }
+/* Hover / activo (suave para pasteles) */
+.navbar.custom-navbar .btn:hover {
+  transform: translateY(-2px);
+  background: rgba(0,0,0,0.06);
+}
+.navbar.custom-navbar .btn.primary:hover,
+.navbar.custom-navbar .btn.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+/* Información de usuario adaptada (compacta y legible) */
+.usuario-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+}
+
+/* email en bloque con contraste suave */
+.usuario-email {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  background-color: rgba(255,255,255,0.85);
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+}
+
+/* botón de cierre de sesión redondeado y visible */
+.logout-btn {
+  background-color: #ff8b8b;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 120ms ease;
+}
+.logout-btn:hover { background-color: #e76b6b; transform: translateY(-2px); }
+
+/* contenedor para botón de login (alineado) */
+.btn-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* botón de login estilo pastel */
+.btn-login {
+  background: linear-gradient(90deg, var(--accent-1), var(--pastel-3));
+  color: #0b2540;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.18s ease, transform 120ms ease;
+}
+.btn-login:hover { transform: translateY(-2px); filter: brightness(0.98); }
+
+/* Responsive: adaptar altura y espaciado en móviles (coincide con Bootstrap sm) */
+@media (max-width: 576px) {
+  :root { --navbar-height: 64px; }
+  .navbar.custom-navbar{ height: var(--navbar-height); }
+  .navbar.custom-navbar .inner { padding: 0 0.6rem; gap: 0.5rem; }
+  .navbar.custom-navbar .navbar-brand { font-size: 1rem; }
+  .usuario-email { display: none; } /* ocultar email en pantallas muy pequeñas */
+}
+
+/* Accesibilidad: foco visible */
+.navbar.custom-navbar .btn:focus,
+.navbar.custom-navbar .navbar-brand:focus {
+  outline: 3px solid rgba(159,200,255,0.28);
+  outline-offset: 2px;
 }

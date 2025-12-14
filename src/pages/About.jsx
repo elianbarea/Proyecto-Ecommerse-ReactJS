@@ -26,7 +26,7 @@ function About() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          opacity: 0.35,
+          opacity: 0.75,
           zIndex: 0
         }}
       />

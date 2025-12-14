@@ -1,0 +1,9 @@
+/* Carrusel principal - Se coloca debajo del Navbar fijo */
+.carousel-image-container {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-image-container:hover {
+  opacity: 0.9;
+}

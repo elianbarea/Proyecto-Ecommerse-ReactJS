@@ -1,148 +1,286 @@
-.productos-main{
-  padding: 2rem;
-  max-width: 100%;
-  margin: 0 auto;
-  position: relative;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: #111;
+:root{
+  /* Paleta pastel (compatibilidad con Navbar variables) */
+  --pastel-1: #f8f5ff; /* lavanda claro */
+  --pastel-2: #fff8f2; /* melocotón claro */
+  --pastel-3: #f0fff6; /* menta claro */
+  --accent-1: #9fc8ff; /* azul pastel */
+  --accent-2: #ffd6a5; /* naranja pastel */
+  --muted: #6b7280;
+  --card-border: rgba(0,0,0,0.06);
+  --text-dark: #0b1220;
 }
 
+/* Contenedor principal: compatible con .container de Bootstrap */
+.productos-main{
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text-dark);
+}
+
+/* Header: usa utilidades Bootstrap si quieres (d-flex, justify-content-between) */
 .productos-header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
+/* Información de carrito compacta */
 .cart-info{
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--muted);
+  font-weight: 600;
 }
 
+/* Lista de productos: se comporta como grid responsive (compatible con row/col de Bootstrap) */
 .productos-list{
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-
+/* Cada producto: estilo tipo card, compatible con clases .card de Bootstrap */
 .producto-item{
-  background:black;
-  border: 1px solid #e6e6e6;
+  background: linear-gradient(180deg, var(--pastel-1), rgba(255,255,255,0.7));
+  border: 1px solid var(--card-border);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
+  gap: 0.75rem;
+  align-items: stretch;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
+/* Hover sutil tipo Bootstrap cards */
+.producto-item:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+}
+
+/* Imagen responsiva, centrada */
 .producto-image{
   width: 100%;
-  max-width: 160px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
 }
 
+/* Texto principal estilo Bootstrap (card-title / card-text) */
 .producto-nombre{
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
+  font-size: 1rem;
+  color: var(--text-dark);
 }
 
 .producto-precio{
-  color: #333;
+  color: var(--muted);
   margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-
+/* Acciones: usa utilidades flex de Bootstrap si lo deseas */
 .producto-actions{
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: auto;
+  justify-content: flex-start;
 }
 
-.cart-item .btn.small {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.6rem;
-  font-size: 0.85rem;
-  background: #ff4d4f;      /* rojo para eliminar */
-  color: #fff;
-  border: 1px solid rgba(255,77,79,0.9);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 150ms ease, transform 100ms ease;
-}
-.btn.detalles {
-  background: #f0f0f0;
-  color: #333;
-  border: 1px solid #d0d0d0;
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 150ms ease, transform 80ms ease;
-}
-
-.btn.detalles:hover {
-  background: #e6e6e6;
-  transform: translateY(-1px);
-}
-
+/* Botones: adheridos a clases .btn de Bootstrap; aquí los ajustamos visualmente */
 .btn{
-  padding: 0.4rem 0.6rem;
-  border: 1px solid #ccc;
-  background: #fafafa;
-  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: white;
+  color: var(--text-dark);
   cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
-.btn.primary{
-  background: #007bff;
-  color: white;
-  border-color: #007bff;
+/* Variante primaria pastel coherente con navbar */
+.btn.primary,
+.btn.btn-primary{
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 18px rgba(159,200,255,0.12);
 }
 
-.btn.small{
-  padding: 0.25rem 0.4rem;
+/* Variante secundaria / detalles */
+.btn.detalles,
+.btn.btn-secondary{
+  background: #ffffff;
+  color: var(--text-dark);
+  border: 1px solid var(--card-border);
+}
+
+/* Tamaño pequeño coherente con Bootstrap .btn-sm */
+.btn.small,
+.btn-sm{
+  padding: 0.25rem 0.5rem;
   font-size: 0.85rem;
 }
 
+/* Carrito lateral: estilo tipo offcanvas pero con fallback responsive */
 .cart-aside{
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  width: 300px;
-  height: 100%;
-  background: #0d0b0bff;
-  color: #fff;
-  border-left: 1px solid rgba(255,255,255,0.08);
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--pastel-3), rgba(255,255,255,0.9));
+  color: var(--text-dark);
+  border-left: 1px solid var(--card-border);
   padding: 1rem;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  box-shadow: -6px 0 20px rgba(16,24,40,0.06);
   overflow-y: auto;
+  z-index: 1050;
+  display: none; /* por defecto oculto; mostrar con clase .open o manejado por JS/Bootstrap Offcanvas */
 }
 
+/* Mostrar el aside cuando tenga clase .open (o usa .show desde JS) */
+.cart-aside.open { display: block; }
+
+/* Botón cerrar estilo simple */
 .cart-aside .close-btn{
   background: transparent;
-  color: #fff;
+  color: var(--text-dark);
   border: none;
   font-size: 1rem;
   cursor: pointer;
 }
 
+/* Ítems dentro del carrito */
 .cart-item{
   display: flex;
-  justify-content: space-between;
+  gap: 0.75rem;
   align-items: center;
-  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(0,0,0,0.04);
 }
 
+/* Encabezado H1 estilizado */
 .H1Producto {
-  color: #ffffff;
+  color: var(--text-dark);
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+/* Helpers: centrado de imagen pequeña en carrito */
+.cart-item .img-sm{
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Responsive behavior: adaptar grid y aside */
+@media (max-width: 992px) {
+  .productos-main{ padding: 1.25rem; }
+  .producto-image{ height: 140px; }
+  .cart-aside{ width: 280px; }
+}
+
+@media (max-width: 768px) {
+  /* En pantallas móviles convertimos el aside en panel inferior (mejor UX mobile) */
+  .cart-aside{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: auto;
+    height: 40vh;
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--card-border);
+    display: none;
+    border-radius: 12px 12px 0 0;
+  }
+  .cart-aside.open{ display: block; }
+
+  /* Grid más compacto */
+  .productos-list{ gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .producto-image{ height: 120px; }
+
+  /* Oculta texto largo si hace falta */
+  .producto-nombre{ font-size: 0.95rem; }
+}
+
+/* Accesibilidad: foco visible en botones y enlaces */
+.producto-item a:focus,
+.producto-item button:focus,
+.producto-item .btn:focus {
+  outline: 3px solid rgba(159,200,255,0.28);
+  outline-offset: 2px;
+}
+
+/* PANEL DESLIZABLE DEL CARRITO */
+.cart-popup {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Oculto fuera de la pantalla */
+    width: 350px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-popup.open {
+    right: 0; /* Se desliza hacia la pantalla */
+}
+
+/* CONTENIDO SCROLLABLE */
+.cart-popup-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* BOTÓN DE CIERRE */
+.close-popup {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+/* MINI IMAGEN EN EL CARRITO */
+.img-sm {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* LISTA DEL CARRITO */
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-group-item img {
+    margin-right: 10px;
 }

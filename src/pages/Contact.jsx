@@ -1,34 +1,66 @@
-import React from 'react';
+import React from "react";
 
 function Contact() {
   return (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', padding: '2rem', padding: '1rem', borderRadius: '8px', maxWidth: '900px', margin: '0 auto', position: 'relative', }}>
-      {/* Formulario de contacto */}
-      <form style={{   padding: '2rem 1rem'}}>
-        <h2>Contacto</h2>
-        <label>
-          Nombre:
-          <input type="text" name="nombre" required />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          Número de Teléfono:
-          <input type="tel" name="telefono" required />
-        </label>
-        <button type="submit">Enviar</button>
-      </form>
-          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
-      <img 
-        src="https://cdn-icons-png.flaticon.com/512/6194/6194658.png" 
-        alt="Imagen de contacto" 
-        style={{width:'400px' , borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-      />
-    </div>
-      
-     
+    <div className="container my-5">
+      <div className="row align-items-center justify-content-center g-4">
+
+        {/* Formulario */}
+        <div className="col-md-6">
+          <div className="card shadow-sm p-4">
+            <h2 className="mb-4 text-center">Contacto</h2>
+
+            <form>
+              <div className="mb-3">
+                <label className="form-label">Nombre</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="form-label">Teléfono</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  placeholder="+54 11 1234 5678"
+                  required
+                />
+              </div>
+
+              <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                  Enviar mensaje
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {/* Imagen */}
+        <div className="col-md-6 text-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/6194/6194658.png"
+            alt="Contacto"
+            className="img-fluid rounded shadow-sm"
+            style={{ maxWidth: "400px" }}
+          />
+        </div>
+
+      </div>
     </div>
   );
 }
