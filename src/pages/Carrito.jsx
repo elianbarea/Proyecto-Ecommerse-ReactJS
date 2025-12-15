@@ -1,12 +1,14 @@
 // ...existing code...
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { useAuthContext } from "../context/AuthContext";
+
 
 const Carrito = () => {
   const { carrito, vaciarCarrito, calcularTotal, agregarCantidad, quitarCantidad } = useAppContext();
   const { usuario } = useAuthContext();
+  const navigate = useNavigate();
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -30,7 +32,7 @@ const Carrito = () => {
           </ul>
           <hr />
           <h3>Total: ${calcularTotal().toFixed(2)}</h3>
-          <button>Finalizar compra</button>
+          <button className="btn btn-success mt-3" onClick={() => navigate('/Pagar')}>Finalizar compra</button>
           <button onClick={vaciarCarrito}>Vaciar carrito</button>
         </>
       ) : (
